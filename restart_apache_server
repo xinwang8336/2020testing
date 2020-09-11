@@ -1,0 +1,27 @@
+#!/bin/sh
+
+httpd="/application/apache/bin/httpd -k"
+. /etc/init.d/functions
+
+case "$1" in
+      start)
+              $httpd start >& /dev/null
+               [ $? -eq 0 ] && action "httpd is started" /bin/true || \
+                action "httpd is started" /bin/false
+             ;;
+       stop)
+              $httpd stop >& /dev/null
+               [ $? -eq 0 ] && action "httpd is stop " /bin/true || \
+                action "httpd is stop " /bin/false
+             ;;
+       restart)
+              $httpd restart >& /dev/null
+               [ $? -eq 0 ] && action "httpd is stop " /bin/true || \
+                action "httpd is stop " /bin/false
+             ;;
+       *)
+              echo " Usage : $0 {start|stop|restart}"
+              exit
+              ;;
+esac
+
